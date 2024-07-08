@@ -1,0 +1,19 @@
+mat-form-field{
+    width: 100% !important;
+    }
+    mat-checkbox{
+    position:absolute;
+    left: -20px;
+    }
+    .align-elements ng-select{
+    width: 81% !important;
+    }
+    .align-elements{
+    display: flex;
+    align-items: center;
+    /* gap: 8px; */
+    flex-wrap:nowrap;
+    }
+    ::ng-deep .ng-select .ng-select-container .ng-value-container{
+    padding: 15px 0 0 0 !important;
+    }

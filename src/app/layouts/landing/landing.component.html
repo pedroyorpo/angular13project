@@ -1,0 +1,67 @@
+<mat-toolbar class="nav-toolbar" style="height:50px !important" color="basic">
+    <nav class="navbar navbar-expand">
+        <div class="container-fluid">
+                <button
+                class="toggleButton"
+                type="button"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <ul class="navbar-nav navMenus">
+                <li *ngFor="let module of Modules" class="nav-item">
+                <a 
+                    [ngClass]="{'active-link': getPath(module.Module.toLowerCase()) == true}" 
+                    class="nav-link dropdown-toggle" 
+                    type="button" 
+                    [matMenuTriggerFor]="menu" 
+                    id="navbarDropdownMenuLink"
+                    >
+                    {{module.Module}}
+                </a>
+                <mat-menu #menu="matMenu" >
+                    <div *ngFor="let submodule of SubModules" >
+                        <button 
+                            *ngIf="module.id == submodule.ModuleId" 
+                            routerLink="{{submodule.Route.toLowerCase()}}"  
+                            mat-menu-item 
+                            >
+                            {{submodule.SubModule}}
+                        </button>
+                    </div>
+                </mat-menu> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+</mat-toolbar>
+
+<mat-toolbar class="business-cont mat-elevation-z3">
+    <span class="business-name" >{{systemTitle}} </span>
+</mat-toolbar>
+<mat-sidenav-container>
+<mat-sidenav #drawer>
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-nav-list *ngFor="let module of Modules">
+        <a mat-list-item [matMenuTriggerFor]="menu">{{module.Module}}</a>
+        <mat-menu #menu="matMenu">
+            <div *ngFor="let submodule of SubModules">
+                <button *ngIf="module.id == submodule.ModuleId" 
+                    routerLink="{{submodule.Route.toLowerCase()}}"
+                    mat-menu-item
+                    >
+                    {{submodule.SubModule}}
+                </button>
+            </div>
+        </mat-menu>
+    </mat-nav-list>
+</mat-sidenav>
+<mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-footer></app-footer>

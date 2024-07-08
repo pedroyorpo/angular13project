@@ -1,0 +1,36 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title>{{btnSave}} Item</h2>
+<mat-divider></mat-divider>
+<form [formGroup]="CustomerForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+        <mat-form-field  appearance="standard">
+            <mat-label>CustomerId</mat-label>
+            <mat-checkbox (change)="onCheck($event.checked)" [checked]=" !data || ( data.CustomerId != null ? data.CustomerId.includes('CTU') :  true) " [disabled]="data">
+            </mat-checkbox>
+            <input class="CustomerId" matInput placeholder="Input CustomerId"  autocomplete="off" required formControlName="CustomerId">
+        </mat-form-field>
+        <mat-form-field class="" appearance="standard">
+            <mat-label>CustomerName</mat-label>
+            <input matInput placeholder="Input CustomerName" autocomplete="off" required formControlName="CustomerName">
+        </mat-form-field>
+        <div class="row">
+            <mat-form-field class="" appearance="standard">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Input Address" autocomplete="off" required formControlName="Address">
+            </mat-form-field>
+            <div class="col-6">
+                <mat-form-field class="w-100"  appearance="standard">
+                    <mat-label>ContactNo</mat-label>
+                    <input matInput placeholder="Input ContactNo" type="number" step="0.01"  autocomplete="off" required formControlName="ContactNo">
+                </mat-form-field>
+            </div>
+        </div>
+      
+       
+    </div>
+    <div mat-dialog-actions [align]="'end'" class="mb-3">
+        <button type="submit" class="mt-4 me-2" mat-raised-button color="primary" [disabled]="CustomerForm.invalid">{{btnSave}}</button>
+    </div>
+</form>

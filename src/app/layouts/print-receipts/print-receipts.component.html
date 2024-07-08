@@ -1,0 +1,44 @@
+<div class="hideOnPrint">
+    <app-all-buttons (printClicked)="onClickPrint()" (excelClicked)="onClickExcel()"></app-all-buttons>
+  </div>
+  <div class="title">
+    <h3>{{Title}}</h3>
+  </div>
+  <div *ngIf="Transaction == 'sales'" #tableToExport>
+    <table class="table table-bordered">
+        <thead class="thead-background">
+          <tr>
+            <th scope="col">ReceiptNo</th>
+            <th scope="col">TransDate</th>
+            <th scope="col">CustomerName</th>
+            <th class="numeric" scope="col">TotalAmount</th>
+            <th class="numeric" scope="col">Discount</th>
+            <th class="numeric" scope="col">TotalDue</th>
+            <th class="numeric" scope="col">AmountPaid</th>
+            <th scope="col">PaymentType</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let header of headers">
+              <td>{{header.ReceiptNo}}</td>
+              <td>{{header.TransDate | date: 'MM/dd/yyyy'}}</td>
+              <td>{{header.CustomerName}}</td>
+              <td class="numeric">{{header.TotalAmount| number: '1.2-2'}}</td>
+              <td class="numeric">{{header.Discount | number: '1.2-2'}}</td>
+              <td class="numeric">{{header.TotalDue | number: '1.2-2'}}</td>
+              <td class="numeric">{{header.AmountPaid | number: '1.2-2'}}</td>
+              <td>{{header.PaymentType }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+              <tr class="no-border">
+                  <td class="no-border" colspan="3"></td>
+                  <td class="numeric">{{getTotalTotalAmount() | number: '1.2-2'}}</td>
+                  <td class="numeric">{{getTotalDiscount() | number: '1.2-2'}}</td>
+                  <td class="numeric">{{getTotalTotalDue() | number: '1.2-2'}}</td>
+                  <td class="no-border" colspan="3"></td>
+              </tr>
+            </tfoot>
+      </table>
+    </div>
+  

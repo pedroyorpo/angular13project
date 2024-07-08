@@ -1,0 +1,25 @@
+td{
+    white-space: nowrap;
+}
+th, td {
+    border: 1px solid #888;
+}
+.title{
+    text-align: center;
+}
+.numeric{
+    text-align: right;
+}
+tfoot{
+    font-weight: 500;
+}
+.no-border{
+    border: none !important;
+}
+tr .no-border{
+    border: none !important;
+}
+.p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: .5; 
+}

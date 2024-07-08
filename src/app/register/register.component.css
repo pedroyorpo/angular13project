@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  mat-card {
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow:  8px 8px 8px 8px rgba(0, 0, 2, 0.1);
+    background-color: #fff;
+    max-width: 400px;
+    width: 100%;
+    height: 58%;
+  }
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 0px;
+  
+  }
+  .sign-up-card {
+    padding: 24px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+ 
+  .button-container {
+   
+    display: flex;
+    justify-content: right;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  button[type="submit"] {
+  display: flex;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: #ffffff;
+    border: none;
+   
+}
+  
+  
+  mat-card-title {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px; /* Adjust font size as needed */
+    color: #385898; /* Facebook blue color */
+  }
+  
+  .login-link a {
+    text-decoration: underline; /* Underline links */
+    transition: color 0.3s; /* Smooth color transition */
+  }
+  
+  .login-link a:hover {
+    color: #4267B2; /* Darker shade of blue on hover */
+    text-decoration: underline; /* Maintain underline on hover */
+  }
+  

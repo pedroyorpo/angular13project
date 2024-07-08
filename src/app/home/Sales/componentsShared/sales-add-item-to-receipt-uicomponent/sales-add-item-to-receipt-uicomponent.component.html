@@ -1,0 +1,59 @@
+
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title>{{Name}} - {{Detail.ReceiptNo}}</h2>
+<mat-divider></mat-divider>
+    <div class="search-div">
+        <mat-form-field class="search-form-field " floatLabel="never"  appearance="standard">
+            <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()" autocomplete="false" (keyup.enter)="PopUpPrice()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="GetItems()"> <mat-icon>cached</mat-icon></button> 
+    </div>
+    <div class="mat-elevation-z2 table-cont w-100">
+        <mat-table [dataSource]="listData" matSort>
+            <ng-container matColumnDef="ItemName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>ItemName</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.ItemName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Category">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Category}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="UM">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>UM</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.UM}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Available">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Available</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Available | number:'1.2-2'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Price">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Price | number:'1.2-2'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Cost">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Cost</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Cost | number:'1.2-2'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+                </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    No data.
+                </mat-footer-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+            <mat-row  (click)="getRecord(row)" (dblclick)="PopUpPrice()"  *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'data-selected': SelectedId == row.id}"></mat-row>
+            <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':!IsTrue}"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="['noData']"
+                [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+        </mat-table>
+      <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons> </mat-paginator>
+    </div>

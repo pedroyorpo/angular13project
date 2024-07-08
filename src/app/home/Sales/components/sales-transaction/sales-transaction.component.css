@@ -1,0 +1,94 @@
+.content{
+    margin: 10px;
+}
+.search-div
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.search-form-field
+{
+    width: 100%;
+}
+.searchtype{
+    width: 30%;
+}
+.forward-icon{
+    font-size: 23px;
+}
+.tab-content{
+    padding: 5px;
+}
+
+.align-elements ng-select{
+    width: 81% !important;
+  }
+  .align-elements{
+    display: flex;
+    align-items: center;
+  
+    gap: 8px;
+    flex-wrap:nowrap;
+  }
+.data-selected{
+    background-color: #e9eaea;
+
+  }
+  .format-number{
+    justify-content: end;
+    margin-right: 10px;
+  }
+.mat-column-ItemName {
+    flex: 0 0 25%;
+    justify-content: start;
+}
+
+.mat-column-UM {
+    flex: 0 0 10%;
+    justify-content: start;
+}
+
+.mat-column-Qty {
+    flex: 0 0 10%;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.mat-column-Price {
+    flex: 0 0 10%;
+    justify-content: end;
+    margin-right: 10px;
+}
+.mat-column-Discount {
+    flex: 0 0 10%;
+    justify-content: end;
+    margin-right: 10px;
+}
+.mat-column-DiscountValue {
+    flex: 0 0 10%;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.mat-column-Available {
+    flex: 0 0 10%;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.mat-column-Amount {
+    flex: 0 0 10%;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.mat-button-toggle{
+    background-color: #3F51B5;
+    color: #e9eaea;
+    border: 0;
+}
+::ng-deep .ng-select .ng-select-container .ng-value-container{
+    padding: 15px 0 0 0 !important;
+}

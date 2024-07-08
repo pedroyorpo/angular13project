@@ -1,0 +1,98 @@
+/* Center the form within the container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Style for the mat-card */
+  mat-card {
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow:  8px 8px 8px 8px rgba(0, 0, 2, 0.1);
+    background-color: #fff;
+    max-width: 400px;
+    width: 90%;
+    height: 40%;
+  }
+  
+  /* Style for the form fields */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+  
+  /* Style for the labels */
+  mat-label {
+    color: #616161;
+  }
+  
+  /* Style the input fields */
+ 
+  
+  /* Style the visibility toggle button */
+  .mat-icon-button {
+    color: #616161;
+  }
+  
+  /* Style for the login button */
+  .example-button-row {
+    display: flex;
+    justify-content: right;
+  }
+   
+  .button-container {
+    justify-content: right;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+
+  }
+  button[mat-button] {
+    width: 100%;
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+  }
+  
+  button[mat-button]:hover {
+    background-color: #1565c0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .container {
+      padding: 5px;
+    }
+  
+    mat-card {
+      padding: 16px;
+    }
+
+    button[mat-button] {
+      padding: 5px;
+    }
+    .example-button-row{
+        margin-top: 2px;
+       }
+       .login-link {
+        text-align: center;
+        margin-top: 1rem;
+    }
+    button[type="submit"] {
+      float: right;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #1976d2;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+  }
+  }
+  

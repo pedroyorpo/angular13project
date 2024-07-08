@@ -1,0 +1,78 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+
+.acct-icon {
+  color: #3f51b5;
+}
+
+.business-name {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  color: #303f9f;
+}
+.navbar-nav {
+  position: relative;
+  left: 5px;
+  padding-left: 0px;
+  list-style-type: none;
+  cursor: pointer;
+}
+.nav-item {
+  display: inline-block;
+}
+mat-sidenav-container {
+  height: 100%;
+  background-color: transparent !important;
+}
+
+mat-sidenav {
+  width: 350px;
+}
+
+.navbar {
+  width: 100% !important;
+  padding: 0 10px 0 10px;
+  width: 100%;
+}
+ .arrow-drop-down{
+  position: relative;
+  top: 7px;
+  left: -10px;
+  margin-left: 10px;
+  color: #000000A6;
+}
+
+.nav-toolbar {
+  padding: 0 !important;
+  font-size: 15px    !important;
+  font-weight: 400 !important;
+}
+.business-cont{
+  width: 100%;
+}
+.nav-toolrow{
+  padding: 0 !important;
+}
+.toggleButton {
+  display: none;
+}
+@media only screen and (max-width: 958px) {
+  .toggleButton {
+      display: inline;
+  }
+
+  .navMenus {
+      display: none !important;
+  }
+
+  button.mat-menu-item {
+      width: 350px !important;
+  }
+}

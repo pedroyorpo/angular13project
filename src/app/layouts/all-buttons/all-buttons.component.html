@@ -1,0 +1,23 @@
+<mat-tab-group (selectedTabChange)="DisplayTab($event.tab.textLabel)" [selectedIndex]="null">
+    <mat-tab label="Data"> 
+      <ng-template mat-tab-label >
+        <mat-icon>insert_chart</mat-icon>
+        Data
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Print">
+      <ng-template mat-tab-label>
+        <mat-icon>print</mat-icon>
+        Print
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Excel">
+      <ng-template mat-tab-label>
+        <mat-icon>file_download</mat-icon>
+        Excel
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <mat-divider></mat-divider>
+  <br>
+

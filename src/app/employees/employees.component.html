@@ -1,0 +1,98 @@
+<section class="section">
+
+    <div class="search-div">
+        <mat-form-field class="w-10" floatLabel="never"  appearance="standard">
+            <input matInput [(ngModel)]="searchKey" [placeholder]="placeHolder" (keyup)="applyFilter()" autocomplete="false">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <button type="button" mat-raised-button color="warn" (click)="onClickNew()"> <mat-icon>add_circle</mat-icon> New</button>
+        <button type="button" mat-raised-button color="none" (click)="onClickPrintReceipts()"> <mat-icon>print</mat-icon> Print Receipts</button>
+    
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      
+    <!-- <div class="mat-elevation-z2">
+        <mat-table [dataSource]="listData" matSort>
+            <ng-container *ngFor="let dc of defaultColumns" [matColumnDef]="dc" sticky >
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{dc}}</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element[dc]}}</mat-cell>
+            </ng-container>
+            
+            <ng-container *ngFor="let dc of numberColumns" [matColumnDef]="dc" sticky >
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{dc}}</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element[dc] | number:'1.2-2'}}</mat-cell>
+            </ng-container>
+            <ng-container *ngFor="let dc of dateColumns" [matColumnDef]="dc" sticky >
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{dc}}</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element[dc] | date:'MM/dd/yyyy'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="primary" (click)="onUpdate(element)"><mat-icon>edit</mat-icon> </button>
+                    <button mat-icon-button color="warn" (click)="onDelete(element)"><mat-icon>delete</mat-icon> </button>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+                </mat-footer-cell>
+          </ng-container>
+            <ng-container matColumnDef="noData">
+    
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                    No data.
+                </mat-footer-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="mergeColumns; sticky:true"></mat-header-row>
+            <mat-row   *matRowDef="let row; columns: mergeColumns;" ></mat-row>
+            <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':!isTrue}"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="['noData']"  [ngClass]="{'hide': items.length > 0}"></mat-footer-row>
+        </mat-table>
+      <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons> </mat-paginator>
+    </div> -->
+    <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+    </mat-footer-cell>
+ 
+
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':!isTrue}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']"  [ngClass]="{'hide': items.length > 0}"></mat-footer-row>
+    <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons> </mat-paginator>
+ 
+</section>
+

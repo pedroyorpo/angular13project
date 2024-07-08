@@ -1,0 +1,8 @@
+mat-form-field{
+    width: 100% !important;
+}
+mat-checkbox{
+    position:absolute;
+    left: -20px;
+}
+

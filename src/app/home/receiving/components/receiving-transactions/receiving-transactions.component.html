@@ -1,0 +1,150 @@
+<div class="quot-content mat-elevation-z2 table-cont" [align]="'center'">
+    <br>
+    <div [align]="'start'">
+        <mat-card-subtitle class="side-content">Receiving Transaction</mat-card-subtitle>
+        <hr>
+        <mat-card-content>
+            <div class="side-content">
+                <div class="row ">
+                    <div class="col-12 col-md-6">
+                        <ng-select 
+                            [items]="Suppliers"  
+                            placeholder="SupplierName" 
+                            bindLabel="SupplierName"  
+                            bindValue="SupplierId"   
+                            [searchable]="true"   
+                            [clearable] = "false"
+                            [(ngModel)]="SupplierId"
+                            appendTo="body" 
+                            >
+                        </ng-select>
+                    </div>
+                    <div class="col-12 col-md-6 text-end">
+                        <h1>SUBTOTAL: {{SubTotal  | number: '1.2-2'}}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <ng-select 
+                            [items]="Items"  
+                            placeholder="ItemName" 
+                            bindLabel="ItemName"  
+                            bindValue="ItemId"   
+                            [searchable]="true"   
+                            [clearable] = "false"
+                            [(ngModel)]="ItemId"
+                            (change)="SelectItem()"
+                            *ngIf="!IsCostCheck"
+                            appendTo="body" 
+                            >
+                        </ng-select>
+                        <mat-form-field class="search-form-field" floatLabel="never"  appearance="standard" *ngIf="IsCostCheck">
+                            <input matInput [(ngModel)]="searchKey" placeholder="Search" (keyup)="applyFilter()" (keyup.enter)="PopUpCost()" autocomplete="false">
+                            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+                            <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="mat-elevation-z2 w-100">
+                <mat-table [dataSource]="listData" matSort>
+                    <ng-container matColumnDef="Qty">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Qty</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <input matInput placeholder="Input Qty" class="clickable text-end inputtable" title="Input Qty " type="text" step="0.01"  (keyup.enter)="UpdateElementReceiveDetail($event,element.id, 'Qty' )"   [value]="element.Qty | number:'1.2-2'" autocomplete="false">
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ItemName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ItemName</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.ItemName}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="UM">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>UM</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.UM}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Cost">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Cost</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <input matInput placeholder="Input Cost" class="clickable text-end inputtable" title="Input Cost" type="text" step="0.01"  (keyup.enter)="UpdateElementReceiveDetail($event,element.id, 'Cost' )"  [value]="element.Cost | number:'1.2-2'" autocomplete="false">
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Cost2">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Cost</mat-header-cell>
+                        <mat-cell *matCellDef="let element" >{{element.Cost |  number:'1.2-2'}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Discount">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Discount</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.Discount |  number:'1.2-2'}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="DiscountValue">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>DiscountValue/Type</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <input matInput placeholder="Input DiscountValue" class="clickable text-end inputtable" title="Input DiscountValue" type="text" step="0.01"  (keyup.enter)="UpdateElementReceiveDetail($event,element.id, 'DiscountValue' )"  [value]="element.DiscountValue | number:'1.2-2'" autocomplete="false">&nbsp;&nbsp;
+                            <mat-checkbox  [checked]="element.DiscountType == 'percent'" (change)="UpdateElementReceiveDetail($event,element.id, 'DiscountType' )"> Percent &nbsp;</mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Amount">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.Amount | number:'1.2-2'}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ItemId">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ItemId</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.ItemId}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Available">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Available</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.Available | number:'1.2-2'}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Category">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.Category}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <!-- <button mat-icon-button (click)="Edit(element)" color="primary"><mat-icon>edit</mat-icon> </button> -->
+		                    <button mat-icon-button (click)="Remove(element)" color="warn"><mat-icon>delete</mat-icon></button>
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="loading">
+                        <mat-footer-cell *matFooterCellDef colspan="6">
+                            <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+                        </mat-footer-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="noData">
+                        <mat-footer-cell *matFooterCellDef colspan="6">
+                            No data.
+                        </mat-footer-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="GetDisplayedColumns(); sticky:true"></mat-header-row>
+                    <mat-row  (click)="getRecord(row)" (dblclick)="SelectItem2()"  *matRowDef="let row; columns: GetDisplayedColumns();" [ngClass]="{'data-selected': SelectedId == row.id}" (contextmenu)="onContextMenu($event, row)"></mat-row>
+                    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':!IsTrue}"></mat-footer-row>
+                    <mat-footer-row *matFooterRowDef="['noData']"
+                        [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+                </mat-table>
+              <mat-paginator class="mat-paginator-sticky" [pageSize]="5" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons> </mat-paginator>
+            </div>
+        </mat-card-content>
+        <div class="save-button side-web-content">
+            <mat-button-toggle-group style="width:100%;margin: 0;" color="primary">
+                <mat-button-toggle style="width:100%" (click)="SaveTransaction()" [disabled]="disableSave">{{Btn1Text}}</mat-button-toggle>
+                <mat-button-toggle style="width:100%" (click)="CostCheck()">Cost CHECK</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div class="row save-button side-mobile-content">
+            <button  mat-raised-button (click)="SaveTransaction()" color="primary" class="col-12 col-sm-3" [disabled]="disableSave">{{Btn1Text}}</button>
+            <button  mat-raised-button (click)="CostCheck()" color="primary" class="col-12 col-sm-3">Cost CHECK</button>
+        </div>
+    </div>
+</div>
+<div style="visibility: hidden; position: fixed"
+    [style.left]="contextMenuPosition.x"
+    [style.top]="contextMenuPosition.y"
+    [matMenuTriggerFor]="contextMenu">
+</div>
+<mat-menu #contextMenu="matMenu">
+	<ng-template matMenuContent let-data="data">
+		<button mat-menu-item (click)="SaveAsHold()"><mat-icon color="basic">save</mat-icon> Save as hold</button>
+	</ng-template>
+</mat-menu>

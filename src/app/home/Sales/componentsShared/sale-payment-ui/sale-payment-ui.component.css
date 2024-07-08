@@ -1,0 +1,41 @@
+mat-form-field{
+
+    width: 100% !important;
+    }
+    mat-checkbox{
+    position:absolute;
+    left: -20px;
+}
+.align-elements ng-select{
+width: 81% !important;
+}
+.align-elements{
+display: flex;
+align-items: center;
+gap: 8px;
+flex-wrap:nowrap;
+}
+.chkbox{
+margin-left: 180px;
+}
+.chkbox2{
+margin-left: 170px;
+}
+.chkbox3{
+margin-left: 270px;
+}
+@media only screen and (max-width: 958px) {
+.chkbox{
+margin-left: 160px;
+}
+.chkbox2{
+margin-left: 150px;
+}
+.chkbox3{
+margin-left: 230px;
+}
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container{
+padding: 15px 0 0 0 !important;
+}

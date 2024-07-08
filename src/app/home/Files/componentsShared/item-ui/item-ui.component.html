@@ -1,0 +1,56 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title>{{btnSave}} Item</h2>
+<mat-divider></mat-divider>
+<form [formGroup]="ItemForm" (ngSubmit)="onSubmit()">
+   
+    <div mat-dialog-content>
+       
+        <mat-form-field  appearance="standard">
+            <mat-label>ItemId</mat-label>
+            <mat-checkbox (change)="onCheck($event.checked)" [checked]=" !data || ( data.ItemId != null ? data.ItemId.includes('ITM') :  true) " [disabled]="data">
+            </mat-checkbox>
+            <input class="ItemId" matInput placeholder="Input ItemId"  autocomplete="off" required formControlName="ItemId">
+        </mat-form-field>
+        <mat-form-field class="" appearance="standard">
+            <mat-label>ItemName</mat-label>
+            <input matInput placeholder="Input ItemName" autocomplete="off" required formControlName="ItemName">
+        </mat-form-field>
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field class="w-100"  appearance="standard">
+                    <mat-label>Cost</mat-label>
+                    <input matInput placeholder="Input Cost" type="number" step="0.01" autocomplete="off" required formControlName="Cost">
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="w-100"  appearance="standard">
+                    <mat-label>Price</mat-label>
+                    <input matInput placeholder="Input Price" type="number" step="0.01"  autocomplete="off" required formControlName="Price">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <mat-form-field class="" appearance="standard">
+                <mat-label>Available</mat-label>
+                <input matInput placeholder="Input Available" type="number" step="0.01" min="0"  autocomplete="off" required formControlName="Available">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="" appearance="standard">
+                <mat-label>UM</mat-label>
+                <input matInput placeholder="Input UM" autocomplete="off" required formControlName="UM">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="" appearance="standard">
+                <mat-label>Category</mat-label>
+                <input matInput placeholder="Input Category" autocomplete="off" required formControlName="Category">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions [align]="'end'" class="mb-3">
+        <button type="submit" class="mt-4 me-2" mat-raised-button color="primary" [disabled]="ItemForm.invalid">{{btnSave}}</button>
+    </div>
+</form>

@@ -1,0 +1,26 @@
+.search-div
+{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 0px;
+    width: 310%;
+}
+
+
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    min-width: 600px; /* Adjust based on your table's content */
+  }
+  
+  th.mat-header-cell, td.mat-cell {
+    min-width: 150px; /* Adjust based on your table's content */
+  }
+  

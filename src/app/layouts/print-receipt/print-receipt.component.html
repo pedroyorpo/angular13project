@@ -1,0 +1,71 @@
+<div class="hideOnPrint">
+    <app-all-buttons (printClicked)="onClickPrint()" (excelClicked)="onClickExcel()"></app-all-buttons>
+  </div>
+  <div *ngIf="Transaction == 'sales'" #tableToExport>
+    <div class="title">
+        <h3>ORDER SLIP</h3>
+    </div>
+    <table  class="w-100">
+        <tr class="no-border">
+            <td class="no-border">Customer : </td>
+            <td class=" no-border numeric">{{header.CustomerName}}</td>
+            <td class=" no-border numeric">Receipt# : </td>
+            <td class=" no-border numeric">{{header.ReceiptNo}}</td>
+        </tr>
+        <tr class="no-border">
+            <td class="no-border">Address : </td>
+            <td  class="no-border numeric">{{header.Address}}</td>
+            <td class="no-border numeric">PO# : </td>
+            <td  class="no-border numeric">{{header.PONo}}</td>
+        </tr>
+        <tr class="no-border">
+            <td class="no-border">Contact# : </td>
+            <td  class=" no-border numeric">{{header.ContactNo}}</td>
+            <td class="no-border numeric">TransDate : </td>
+            <td  class=" no-border numeric">{{header.TransDateTime | date:'MM/dd/yyyy H:s a'}}</td>
+        </tr>
+        <tr class="no-border">
+            <td class="no-border">PaymentType : </td>
+            <td  class=" no-border numeric">{{header.PaymentType}}</td>
+            <td class="no-border numeric">DueDate : </td>
+            <td  class=" no-border numeric">{{header.DueDate | date:'MM/dd/yyyy '}}</td>
+        </tr>
+    </table>
+    <table class="table table-bordered w-100">
+        <thead class="thead-background">
+        <tr>
+            <th class="numeric" scope="col">Qty</th>
+            <th scope="col">UM</th>
+            <th scope="col">ItemName</th>
+            <th class="numeric" scope="col">Price</th>
+            <th class="numeric" scope="col">Discount</th>
+            <th class="numeric" scope="col">Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of details">
+            <td class="numeric">{{item.Qty  | number: '1.2-2'}}</td>
+            <td>{{item.UM}}</td>
+            <td>{{item.ItemName}}</td>
+            <td class="numeric">{{item.Price| number: '1.2-2'}}</td>
+            <td class="numeric">{{item.Discount | number: '1.2-2'}}</td>
+            <td class="numeric">{{(item.Price * item.Qty) - (item.Qty * item.Discount)  | number: '1.2-2'}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr class="no-border">
+                <td class="no-border numeric" colspan="5">SUBTOTAL</td>
+                <td class="no-border numeric">{{header.TotalAmount | number: '1.2-2'}}</td>
+            </tr>
+            <tr class="no-border">
+                <td class="no-border numeric" colspan="5">DISCOUNT</td>
+                <td class="no-border numeric">{{header.Discount | number: '1.2-2'}}</td>
+            </tr>
+            <tr class="no-border">
+                <td class="no-border numeric" colspan="5">TOTAL DUE</td>
+                <td class="no-border numeric">{{header.TotalDue | number: '1.2-2'}}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+

@@ -1,0 +1,96 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" class="sidenav" [opened]="(isMobile$ | async)">
+
+      <!-- <button mat-button [matMenuTriggerFor]="menu">Employees</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Files</button>
+        <button mat-menu-item>Clients</button>
+        <button mat-menu-item>Branches</button>
+      </mat-menu> -->
+        
+      <mat-form-field appearance="fill" sty>
+        <mat-label>Home</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option routerLink="dashboard" routerLinkActive="active" value="dashboard">Dashboard</mat-option>
+      
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" sty>
+        <mat-label>Files</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option routerLink="employees" routerLinkActive="active" value="option1">Employees</mat-option>
+          <mat-option value="option2">Clients</mat-option>
+          <mat-option value="option3">Branches</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Attendance</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option routerLink="attendance/cutofftimecards" routerLinkActive="active" value="CutOff">CutOff TimeCards</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Payroll</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option routerLink="/" routerLinkActive="active" value="p1">Payroll</mat-option>
+          <mat-option value="p2">Payroll Batches</mat-option>
+          <mat-option value="p3">Payslip Records</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+ 
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="warn">
+      <ng-container *ngIf="isMobile$ | async">
+        <button mat-icon-button (click)="toggleSidenav(sidenav)">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </ng-container>
+      <span class="navbar-brand" routerLink="/dashboard" routerLinkActive="active">My App</span>
+      <span class="example-spacer"></span>
+      <nav>
+        <ul class="nav-list">
+        <button mat-button  routerLink="dashboard" routerLinkActive="active">Dashboard</button>
+         
+        <button mat-button [matMenuTriggerFor]="menu1">Files</button>
+          <mat-menu #menu1="matMenu">
+            <button mat-menu-item routerLink="employees" routerLinkActive="active">Employees</button>
+            <button mat-menu-item>Clients</button>
+            <button mat-menu-item>Branches</button>
+          </mat-menu>
+
+          <button mat-button [matMenuTriggerFor]="menu2">Attendance</button>
+          <mat-menu #menu2="matMenu">
+            <button mat-menu-item routerLink="attendance/cutofftimecards" routerLinkActive="active">CutOff Timecards</button>
+            <button mat-menu-item>Clients</button>
+            <button mat-menu-item>Branches</button>
+          </mat-menu>
+
+          <button mat-button [matMenuTriggerFor]="menu3">Payroll</button>
+          <mat-menu #menu3="matMenu">
+            <button mat-menu-item>Generate Payroll</button>
+            <button mat-menu-item>Payroll Batches</button>
+            <button mat-menu-item>Payslip Records</button>
+          </mat-menu>
+
+          <button mat-button [matMenuTriggerFor]="menu4">
+            <mat-icon class="custom-icon" aria-hidden="false" aria-label="Example user icon">person</mat-icon>
+          </button>
+          <mat-menu #menu4="matMenu">
+            <button mat-menu-item routerLink="userprofileui" routerLinkActive="active">Profile</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+           
+          </mat-menu>
+        </ul>
+      </nav>
+    </mat-toolbar>
+  
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

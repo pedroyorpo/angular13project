@@ -1,0 +1,100 @@
+.sidenav-container {
+  height: 100%;
+  background-color:none;
+  
+}
+.mat-form-field{
+  background-color: none;
+
+}
+.sidenav {
+  width: 200px;
+  margin-top: 0%;
+}
+
+.navbar-brand {
+  margin-left: 16px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+  margin: 0px;
+  padding: 2px;
+}
+.nav-list {
+  list-style: none;  /* Remove bullet points */
+  margin: 0;         /* Remove default margin */
+  padding: 0;        /* Remove default padding */
+  display: flex;     /* Flexbox layout to align items horizontally */
+}
+.nav-list a{
+  padding: 0px;
+}
+.nav-list a.active {
+ font-style: tahoma; 
+    /* Highlight the active link */
+}
+nav.visible .nav-list {
+  display: flex;
+}
+.example-spacer {
+  flex: 1 1 auto;  /* Flexbox spacer to push the logout button to the right */
+}
+
+.navbar-brand {
+  margin-left: 16px; /* Optional: Add some space to the left of the brand */
+}
+
+@media (max-width: 600px) {
+  .nav-list {
+    display: none; /* Hide the navigation list on smaller screens */
+    flex-direction: column; /* Stack items vertically for mobile */
+  }
+}
+.nav-list a:hover {
+  background-color:white;
+}
+.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+  margin: 0px;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 0 !important;
+}
+
+.no-margin {
+  margin-top: 0 !important;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-top: 0 !important;
+}
+.mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+  cursor: pointer;
+}
+.custom-icon {
+  font-size: 22px;  /* Change the size of the icon */
+  color: whitesmoke;   /* Change the color of the icon */
+  margin: 0px;
+  padding-right: 2px;     /* Add some margin */
+}

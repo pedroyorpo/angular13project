@@ -1,0 +1,40 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<h2 mat-dialog-title>{{btnSave}} Supplier</h2>
+<mat-divider></mat-divider>
+<form [formGroup]="SupplierForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+        <mat-form-field  appearance="standard">
+            <mat-label>SupplierId</mat-label>
+            <input class="SupplierId" matInput placeholder="Input SupplierId"  autocomplete="off" required formControlName="SupplierId">
+        </mat-form-field>
+        <mat-form-field class="" appearance="standard">
+            <mat-label>SupplierName</mat-label>
+            <input matInput placeholder="Input SupplierName" autocomplete="off" required formControlName="SupplierName">
+        </mat-form-field>
+        <div class="row">
+            <mat-form-field class="" appearance="standard">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Input Address" autocomplete="off" required formControlName="Address">
+            </mat-form-field>
+            <div class="col-6">
+                <mat-form-field class="w-100"  appearance="standard">
+                    <mat-label>ContactPerson</mat-label>
+                    <input matInput placeholder="Input ContactPerson"  autocomplete="off" required formControlName="ContactPerson">
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="w-100"  appearance="standard">
+                    <mat-label>ContactNo</mat-label>
+                    <input matInput placeholder="Input ContactNo"  autocomplete="off" required formControlName="ContactNo">
+                </mat-form-field>
+            </div>
+        </div>
+      
+       
+    </div>
+    <div mat-dialog-actions [align]="'end'" class="mb-3">
+        <button type="submit" class="mt-4 me-2" mat-raised-button color="primary" [disabled]="SupplierForm.invalid">{{btnSave}}</button>
+    </div>
+</form>
