@@ -43,18 +43,12 @@ export class LoginComponent {
       }
     });
   }
-  // onSubmit() {
-  //   const { email, password } = this.loginForm.value;
-  //   this.authService.login(email, password).subscribe({
+  Reset()
+  {
+    this.loginForm.controls['email'].setValue('');
+    this.loginForm.controls['password'].setValue('');
     
-  //     next: (res) => {
-
-  //       this.notificationService.popupSwalMixin("Successfully Saved. " + res.message);
-  //     },
-  //     error: (err) => {
-  //       this.notificationService.toastrError(err.error.message);
-  //     },
-  //   });
-  // }
+   
+  }
 
 }

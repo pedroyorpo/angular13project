@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile-ui',
@@ -7,22 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile-ui.component.css']
 })
 export class UserProfileUIComponent implements OnInit {
-  email: string = '';
-  users : any=[];
 
+  logout() {
 
-  constructor() { }
+    this.authService.logout(); 
+    this.router.navigate(['/login']);
+  
+}
+  userEmail: string | null = null;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    console.log(user); // Debugging line
-    if (user && user.firstName && user.lastname) {
-      this.users = user.firstName + ' ' + user.lastname;
-      this.email = user.email;
-    } else {
-      console.error('User data is not properly stored in localStorage.');
-    }
-   
+    
+    this.userEmail = this.authService.getUserEmail();
   }
 
 }

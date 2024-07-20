@@ -22,46 +22,30 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-  // onSubmit(){
-  //   console.log(this.signUpForm);
-  //   this.authService.register(this.signUpForm).subscribe({
-    
-  //     next:(res)=>{
-       
-  //      this.notificationService.popupSwalMixin("Successfuly Saved."+ res);
-  //     },
-  //     error:(err)=> {
-  //       this.notificationService.toastrError(err.error);
-  //     },
-  //   });
-  // }
-  // onSubmit() {
-  //   if (this.signUpForm.valid) {
-  //     //console.log(this.signUpForm)
-  //     this.authService.register(this.signUpForm).subscribe({
-    
-  //       next:(res)=>{
-         
-  //        this.notificationService.popupSwalMixin("Successfuly Saved."+ res);
-  //       },
-  //       error:(err)=> {
-  //         this.notificationService.toastrError(err.error);
-  //       },
-  //     });
-  //   }
-  //  }
+  
   onSubmit() {
     if (this.signUpForm.valid) 
       {
         this.authService.register(this.signUpForm.getRawValue()).subscribe({
           next: (res) => {
             this.notificationService.popupSwalMixin("Successfully Saved. " + res.message);
+            this.Reset();
+            
           },
           error: (err) => {
-            this.notificationService.toastrError(err.error.message);
+            this.notificationService.toastrError(err.message);
           },
         });
      }
+  }
+  Reset()
+  {
+    this.signUpForm.controls['firstName'].setValue('');
+    this.signUpForm.controls['lastname'].setValue('');
+    this.signUpForm.controls['email'].setValue('');
+    this.signUpForm.controls['password'].setValue('');
+    
+   
   }
 
 }

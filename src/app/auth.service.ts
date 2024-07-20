@@ -17,28 +17,39 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   private token: string | null = null;
+  private userEmail: string | null = null;
+  private isAuthenticated = false;
 
-  
   // Check if the user is logged in
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    return this.isAuthenticated;
   }
 
   login(email: string, password: string): Observable<any>{
     return this.http.post<any>(_url+'login',{email,password}).pipe(
       tap(res => {
         this.token = res.token;
+        this.userEmail = email; // Assume the email is returned in the response
+        localStorage.setItem('userEmail', this.userEmail);
         localStorage.setItem('token', this.token);
+        this.isAuthenticated = true;
         this.RequiredRefresh.next();
       }),
       catchError(this.handleError<any>('login'))
     );
   }
 
-  // Log the user out
+
+  getUserEmail(): string | null {
+    return this.userEmail || localStorage.getItem('userEmail');
+  }
+ 
   logout(): void {
+    this.isAuthenticated = false;
     this.token = null;
+    this.userEmail = null;
     localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
